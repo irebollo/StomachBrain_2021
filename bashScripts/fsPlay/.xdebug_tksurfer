@@ -1,0 +1,23 @@
+	WARNING: MRI xsize and zsize are not equal to reginfo in_plane_res and slice_thickness:
+	    MRI:        xsize = 2.000000           zsize = 2.000000
+	reginfo: in_plane_res = 1.000000 slice_thickness = 1.000000
+mriFunctionalData:
+	msFileName=/media/Navigastric/fsPlay/tmap2mm.nii
+	msRegistrationFileName=/usr/local/freesurfer/subjects/fsaverage/mri/transforms/reg.mni152.2mm.dat
+	msSubjectName=fsaverage
+	mpData->ps=1.000000
+	mpData->thick=1.000000
+	mpData->width=91
+	mpData->height=109
+	mpData->depth=91
+	mConvMethod=2
+	mNumTimePoints=1
+	mNumConditions=1
+	mbNullConditionPresent=0
+	mMaxValue=-10000.000000
+	mMinValue=10000.000000
+	mTimeResolution=1.000000
+	mNumPreStimTimePoints=0
+	mbErrorDataPresent=0
+	mNumBins=0
+

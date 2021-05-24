@@ -1,0 +1,32 @@
+mri_convert /media/irebollo/storage/projects/Navigastric/scripts/bashScripts/freesurfer/warpGasnet/lh.gasnet.allSub_RF_ANTs_MNI152_orig_to_fsaverage.nii \
+/media/irebollo/storage/projects/Navigastric/scripts/bashScripts/freesurfer/warpGasnet/lh.gasnetSURF.mgh
+
+freeview -f /home/irebollo/freesurfer/subjects/fsaverage/surf/lh.white:\
+/media/irebollo/storage/projects/Navigastric/scripts/bashScripts/freesurfer/warpGasnet/lh.gasnetSURF.mgh:overlay_threshold=0,05 \
+:annot:/media/irebollo/DATAPART1/SADREST/Usefulfiles/lh.HCPMMP1.annot
+
+SUBJECTS_DIR=/media/irebollo/storage/projects/Navigastric/freesurferData/
+
+
+freeview -f $SUBJECTS_DIR/fsaverage/surf/rh.inflated:annot=HCPMMP1.annot:annot_outline=1:overlay=/media/irebollo/storage/projects/Navigastric/scripts/bashScripts/freesurfer/warpGasnet/rh.gasnetSURF.mgh:overlay_threshold=1,1 \
+-viewport 3d
+
+mri_convert /media/irebollo/storage/projects/Navigastric/scripts/bashScripts/freesurfer/warpGasnet/rh.gasnet.allSub_RF_ANTs_MNI152_orig_to_fsaverage.nii \
+/media/irebollo/storage/projects/Navigastric/scripts/bashScripts/freesurfer/warpGasnet/rh.gasnetSURF.mgh
+
+
+/media/irebollo/storage/projects/Navigastric/scripts/bashScripts/freesurfer/standalone_scripts_for_MNI_fsaverage_projection/CBIG_RF_projectMNI2fsaverage.sh \
+-s /media/irebollo/storage/projects/Navigastric/ClusterResults/effecsizes/cd.nii \
+-o /media/irebollo/storage/projects/Navigastric/ClusterResults/effecsizes/ -m /usr/local/MATLAB/R2017b/bin/
+
+# project variability
+
+/media/irebollo/storage/projects/Navigastric/scripts/bashScripts/freesurfer/standalone_scripts_for_MNI_fsaverage_projection/CBIG_RF_projectMNI2fsaverage.sh \
+-s /media/irebollo/storage/projects/Navigastric/ClusterResults/effecsizes/bs_ci.nii \
+-o /media/irebollo/storage/projects/Navigastric/ClusterResults/effecsizes/ -m /usr/local/MATLAB/R2017b/bin/
+
+mri_convert /media/irebollo/storage/projects/Navigastric/ClusterResults/effecsizes/lh.bs_ci.allSub_RF_ANTs_MNI152_orig_to_fsaverage.nii \
+/media/irebollo/storage/projects/Navigastric/scripts/bashScripts/freesurfer/warpGasnet/lh.gasnetCDSTD.mgh
+
+mri_convert /media/irebollo/storage/projects/Navigastric/ClusterResults/effecsizes/rh.bs_ci.allSub_RF_ANTs_MNI152_orig_to_fsaverage.nii \
+/media/irebollo/storage/projects/Navigastric/scripts/bashScripts/freesurfer/warpGasnet/rh.gasnetCDSTD.mgh

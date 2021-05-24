@@ -1,0 +1,4 @@
+could not read annot file /home/irebollo/freesurfer/subjects/fsaverage/surf/../label/lh.HCPMMP1.annot
+could not read annot file /home/irebollo/freesurfer/subjects/fsaverage/surf/../label/rh.HCPMMP1.annot
+mghRead(/media/irebollo/storage/projects/Navigastric/scripts/bashScripts/freesurfer/warpGasnet/media/irebollo/storage/projects/Navigastric/scripts/bashScripts/freesurfer/warpGasnet/rh.gasnetSURF.mgh, -1): could not open file
+mghRead(/media/irebollo/storage/projects/Navigastric/scripts/bashScripts/freesurfer/warpGasnet/media/irebollo/storage/projects/Navigastric/scripts/bashScripts/freesurfer/warpGasnet/rh.gasnetSURF.mgh, -1): could not open file

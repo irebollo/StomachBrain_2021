@@ -1,0 +1,6 @@
+niiRead(): error opening file /usr/local/freesurfer/subjects/fsaverage/surf/lh.MNI_probMap_ants.central_sulc.allSub_RF_ANTs_MNI152_orig_to_fsaverage.nii.gz
+niiRead(): error opening file /usr/local/freesurfer/subjects/fsaverage/surf/lh.MNI_probMap_ants.central_sulc.allSub_RF_ANTs_MNI152_orig_to_fsaverage.nii.gz
+niiRead(): error opening file /media/Navigastric/freesurferData/fsaverage/surf/lh.gasnet.allSub_RF_ANTs_MNI152_orig_to_fsaverage.nii.gz
+niiRead(): error opening file /media/Navigastric/freesurferData/fsaverage/surf/lh.gasnet.allSub_RF_ANTs_MNI152_orig_to_fsaverage.nii.gz
+corRead(): can't open file /media/Navigastric/scripts/bashScripts/freesurfer/standalone_scripts_for_MNI_fsaverage_projection/COR-.info
+corRead(): can't open file /media/Navigastric/scripts/bashScripts/freesurfer/standalone_scripts_for_MNI_fsaverage_projection/COR-.info

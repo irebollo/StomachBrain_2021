@@ -1,0 +1,156 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Jul  9 09:24:20 2019
+
+@author: irebollo
+"""
+
+"""
+Basic Visualization
+===================
+
+Initialize a basic visualization session.
+
+"""
+
+from surfer import Brain
+from mayavi import mlab
+import numpy as np
+from surfer import io
+import mne
+import os
+
+"""
+Define the three important variables.
+Note that these are the first three positional arguments
+in tksurfer (and pysurfer for that matter).
+"""
+
+
+subject_id = 'fsaverage'
+surf = 'inflated'
+subjects_dir="/media/irebollo/storage/projects/Navigastric/freesurferData/"
+
+LOS_all = ['PFcm','OP4','OP1','OP2-3','43','FOP1','FOP2','FOP3','FOP4','RI','Ig','PoI1','PoI2','MI','52','PBelt','LBelt','A1','MBelt','A4','A5','TA2','STSdp','STSda']
+
+#'PCV','7Am','31a','31pd'
+
+"""
+Plot Left
+"""
+
+
+# overlay_gasnetDL = "/media/irebollo/storage/projects/Navigastric/ClusterResults/effecsizes/lh.SurrParBothSample_nR1000_CA0050_kw3_fir2_fspread_015_fOrder_5_tw_15csfr_mask.FUSPROJ.nii"
+overlay_gasnetDL = "/media/irebollo/storage/projects/Navigastric/scripts/bashScripts/freesurfer/warpGasnet/lh.gasnet.allSub_RF_ANTs_MNI152_orig_to_fsaverage.nii"
+gasnet_l = io.read_scalar_data(overlay_gasnetDL)
+gasnet_l[gasnet_l > 0.001] = 1
+
+gasnetES_L = "/media/irebollo/storage/projects/Navigastric/ClusterResults/effecsizes/lh.cd.FUSPROJ.nii"
+# gasnetES_L = "/media/irebollo/storage/projects/Navigastric/ClusterResults/effecsizes/lh.cd.allSub_RF_ANTs_MNI152_orig_to_fsaverage.nii"
+sig1_l = io.read_scalar_data(gasnetES_L)
+sig1_l[gasnet_l < 1 ] = 0
+
+hemi="lh"
+
+
+labels = mne.read_labels_from_annot('/media/irebollo/storage/projects/Navigastric/freesurferData/fsaverage', parc='HCPMMP1', hemi=hemi)
+labels = {l.name: l for l in labels}
+
+####
+
+brain = Brain(subject_id,hemi,surf,subjects_dir="/media/irebollo/storage/projects/Navigastric/freesurferData/",background="w")
+
+    
+
+V = brain.geo[hemi].x.size
+
+colors_all = ['green','green','green', 'green', 'aqua', 'blue', 'blue', 'blue', 'blue','indigo','pink','pink','pink','pink','pink', 'darkviolet', 'darkviolet', 'darkviolet', 'darkviolet', 'violet', 'violet', 'violet', 'violet', 'violet']
+
+
+
+count=0
+for name in LOS_all: 
+    LOI_l = 'L_'+LOS_all[count]+'_ROI'
+    label_name = LOI_l
+    brain.add_label(label_name,borders=True,color=colors_all[count],alpha=0.85)
+    count = count +1
+    
+'''
+count=0
+for name in LOS_all: 
+    LOI_l = 'L_'+LOS_all[count]+'_ROI'
+    label_name = LOI_l
+    brain.add_label(label_name,borders=3,color=colors_all[count],alpha=0.85)
+    count = count +1
+  '''  
+  
+brain.add_data(sig1_l, min=0.3, max=0.5,thresh=0.001,colormap="autumn", alpha=1, colorbar=True)
+
+brain.toggle_toolbars(True)
+
+
+brain.show_view(dict(azimuth=-45, elevation=-120, distance=400))
+brain.save_image("/media/irebollo/storage/projects/Navigastric/scripts/plots&figures/OPER_LL.png")
+
+
+
+##### Right hemisphere
+
+
+overlay_gasnetDR = "/media/irebollo/storage/projects/Navigastric/scripts/bashScripts/freesurfer/warpGasnet/rh.gasnet.allSub_RF_ANTs_MNI152_orig_to_fsaverage.nii"
+gasnetES_R = "/media/irebollo/storage/projects/Navigastric/ClusterResults/effecsizes/rh.cd.FUSPROJ.nii"
+
+
+
+# overlay_gasnetDR = "/media/irebollo/storage/projects/Navigastric/scripts/bashScripts/freesurfer/warpGasnet/rh.gasnet.allSub_RF_ANTs_MNI152_orig_to_fsaverage.nii"
+gasnet_r = io.read_scalar_data(overlay_gasnetDR)
+gasnet_r[gasnet_r > 0.001] = 1
+
+
+# gasnetES_R = "/media/irebollo/storage/projects/Navigastric/ClusterResults/effecsizes/rh.cd.allSub_RF_ANTs_MNI152_orig_to_fsaverage.nii"
+sig1_r = io.read_scalar_data(gasnetES_R)
+sig1_r[gasnet_r < 1 ] = 0
+
+hemi="rh"
+labels = mne.read_labels_from_annot('/media/irebollo/storage/projects/Navigastric/freesurferData/fsaverage', parc='HCPMMP1', hemi=hemi)
+labels = {l.name: l for l in labels}
+
+
+
+
+
+LOI_r = [None] *len(LOS_all)
+count=0
+for name in LOS_all: 
+    LOI_r[count] = 'R_'+LOS_all[count]+'_ROI-rh'
+    count= count+1
+
+
+
+brain = Brain(subject_id,hemi,surf,subjects_dir="/media/irebollo/storage/projects/Navigastric/freesurferData/",background="w")
+V = brain.geo[hemi].x.size
+
+
+colors_all = ['green', 'green', 'green', 'green', 'aqua', 'blue', 'blue', 'blue', 'blue','indigo','pink','pink','pink','pink','pink', 'darkviolet', 'darkviolet', 'darkviolet', 'darkviolet', 'violet', 'violet', 'violet', 'violet', 'violet']
+
+
+count=0
+for name in LOS_all: 
+    LOI_l = 'R_'+LOS_all[count]+'_ROI'
+    label_name = LOI_l
+    brain.add_label(label_name,borders=True,color=colors_all[count],alpha=0.85)
+    count = count +1
+    
+    
+# plot
+    
+brain.add_data(sig1_r, min=0.3, max=0.5,thresh=0.001,colormap="autumn", alpha=1, colorbar=True)
+
+
+brain.show_view(dict(azimuth=+45, elevation=120, distance=400))
+
+brain.save_image("/media/irebollo/storage/projects/Navigastric/scripts/plots&figures/OPER_RL.png")
+
+brain.toggle_toolbars(True)
+
