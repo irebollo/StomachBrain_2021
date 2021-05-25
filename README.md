@@ -19,10 +19,4 @@ FInally the folder RFun and demographics contains R scripts and SPM batcher to p
 _ 
 Dependencies
 These scripts require the following dependencies:
--Raincloud plots
--Colorbrewer
--Fieldtrip
--SPM 12
--Rstudio
--Python 3 & Pysurfer
--Freesurfer
+-Raincloud plots,Colorbrewer,Fieldtrip,SPM 12,Rstudio,Python 3 & Pysurfer,Freesurfer
